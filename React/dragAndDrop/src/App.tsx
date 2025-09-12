@@ -1,7 +1,9 @@
 // import DragAndDrop from "./components/DragAndDrop"
 
-import Hero from "./components/Hero"
-import Nav from "./components/nav"
+import Confirmation from "./components/ConfirmationModel/Confirmation"
+
+// import Hero from "./components/Hero"
+// import Nav from "./components/nav"
 
 
 function App() {
@@ -23,8 +25,9 @@ function App() {
   return (
     <>
       {/* <DragAndDrop initialState={initialData} /> */}
-      <Nav />
-      <Hero />
+      {/* <Nav />
+      <Hero /> */}
+      <Confirmation />
     </>
   )
 }

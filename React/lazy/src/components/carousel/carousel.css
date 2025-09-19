@@ -1,0 +1,36 @@
+.container{
+    height: 100vh;
+    width: 100vh;
+    display: flex;
+    position: relative;
+    
+}
+
+.imgc{
+    
+    height: 600px;
+    width: 100%;
+}
+
+.backbtn{
+position: absolute;
+  background-color: black;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 10px;
+  top: 50%;
+  cursor: pointer;
+  left: 1rem;
+  
+
+}
+.frontbtn{
+    position: absolute;
+  background-color: black;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 10px;
+  top: 50%;
+  cursor: pointer;
+  right: 1rem;
+}

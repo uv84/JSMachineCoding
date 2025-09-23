@@ -49,7 +49,7 @@ export default function FileExp({ id = 1 }) {
       </>
       {showChildren &&
         nodes[id]?.children?.map((childId, index) => {
-          return <FileExplorer key={index} id={childId} />;
+          return <FileExp key={index} id={childId} />;
         })}
     </div>
   );

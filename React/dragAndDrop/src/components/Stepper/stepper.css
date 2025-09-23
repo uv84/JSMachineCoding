@@ -1,0 +1,497 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Main Container */
+.stepper-container {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: rgba(250, 250, 210, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  padding: 1rem;
+}
+
+.stepper {
+  width: 100%;
+  max-width: 800px;
+  min-height: 500px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Step Navigation */
+.step-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex: 1;
+  justify-content: center;
+}
+
+/* Step Numbers */
+.step-number {
+  --step-size: 40px;
+  height: var(--step-size);
+  width: var(--step-size);
+  border-radius: 50%;
+  background-color: rgba(63, 51, 35, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  color: #333;
+  z-index: 2;
+  position: relative;
+}
+
+.step-number:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.step-number:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.step-number.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #0056b3;
+}
+
+.step-number.current {
+  background-color: #28a745;
+  color: white;
+  border-color: #1e7e34;
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+/* Connecting Lines */
+.step-line {
+  height: 3px;
+  width: 6.5rem;
+  background-color: #e9ecef;
+  margin: 0 0.5rem;
+  transition: background-color 0.3s ease;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+/* Hide lines on mobile - they'll be handled by responsive design */
+@media (max-width: 767px) {
+  .step-line {
+    display: none;
+  }
+}
+
+.step-line.active {
+  background-color: #007bff;
+}
+
+/* Step Labels */
+.step-label {
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.875rem;
+  color: #6c757d;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  text-align: center;
+  min-width: 80px;
+  max-width: 120px;
+}
+
+.step-label:hover {
+  color: #007bff;
+}
+
+.step-label:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.step-label.active {
+  color: #007bff;
+  font-weight: 600;
+}
+
+/* Content Container */
+.step-content-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.nav-button {
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  text-transform: capitalize;
+}
+
+.nav-button:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+.prev-button {
+  background-color: #6c757d;
+  color: white;
+}
+
+.prev-button:hover:not(:disabled) {
+  background-color: #5a6268;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.next-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.next-button:hover:not(:disabled) {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+.nav-button:disabled {
+  background-color: #e9ecef;
+  color: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Responsive Design - Mobile First Approach */
+
+/* Large screens (1200px and up) */
+@media (min-width: 1200px) {
+  .stepper {
+    max-width: 1000px;
+    padding: 3rem;
+  }
+  
+  .step-navigation {
+    margin-bottom: 2rem;
+  }
+  
+  .step-number {
+    --step-size: 50px;
+    font-size: 20px;
+  }
+  
+  .step-line {
+    width: 8rem;
+  }
+  
+  .step-label {
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .step-content-container {
+    min-height: 250px;
+    padding: 2rem;
+  }
+}
+
+/* Medium screens (992px to 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .stepper {
+    max-width: 800px;
+    padding: 2.5rem;
+  }
+  
+  .step-number {
+    --step-size: 45px;
+    font-size: 19px;
+  }
+  
+  .step-line {
+    width: 6rem;
+  }
+  
+  .step-label {
+    font-size: 0.9rem;
+  }
+  
+  .step-content-container {
+    min-height: 220px;
+    padding: 1.5rem;
+  }
+}
+
+/* Small screens (768px to 991px) */
+@media (max-width: 991px) {
+  .stepper-container {
+    padding: 0.5rem;
+  }
+  
+  .stepper {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  
+  .step-line {
+    width: 4rem;
+  }
+  
+  .step-label {
+    font-size: 0.8rem;
+    min-width: 70px;
+  }
+}
+
+/* Tablets (576px to 767px) */
+@media (max-width: 767px) {
+  .stepper-container {
+    padding: 0.5rem;
+    min-height: 100vh;
+  }
+  
+  .stepper {
+    padding: 1rem;
+    gap: 1rem;
+    min-height: 400px;
+  }
+  
+  .step-navigation {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+  
+  .step-item {
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .step-line {
+    width: 2rem;
+    height: 2px;
+    margin: 0.5rem 0;
+    order: 2;
+  }
+  
+  .step-number {
+    --step-size: 35px;
+    font-size: 16px;
+    order: 1;
+  }
+  
+  .step-label {
+    position: static;
+    transform: none;
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    order: 3;
+    min-width: auto;
+    text-align: center;
+  }
+  
+  .step-content-container {
+    min-height: 150px;
+    padding: 0.75rem;
+  }
+  
+  .navigation-buttons {
+    flex-direction: row;
+    gap: 0.75rem;
+  }
+  
+  .nav-button {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Mobile phones (480px to 575px) */
+@media (max-width: 575px) {
+  .stepper-container {
+    padding: 0.25rem;
+  }
+  
+  .stepper {
+    padding: 0.75rem;
+    gap: 0.75rem;
+    border-radius: 8px;
+  }
+  
+  .step-navigation {
+    gap: 0.1rem;
+  }
+  
+  .step-number {
+    --step-size: 30px;
+    font-size: 14px;
+  }
+  
+  .step-line {
+    width: 1.5rem;
+    height: 2px;
+  }
+  
+  .step-label {
+    font-size: 0.7rem;
+    margin-top: 0.25rem;
+  }
+  
+  .step-content-container {
+    min-height: 120px;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .nav-button {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.85rem;
+    min-width: 80px;
+  }
+}
+
+/* Small mobile phones (320px to 479px) */
+@media (max-width: 479px) {
+  .stepper {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+  
+  .step-number {
+    --step-size: 28px;
+    font-size: 13px;
+  }
+  
+  .step-line {
+    width: 1rem;
+  }
+  
+  .step-label {
+    font-size: 0.65rem;
+    margin-top: 0.2rem;
+  }
+  
+  .step-content-container {
+    min-height: 100px;
+    padding: 0.4rem;
+    font-size: 0.85rem;
+  }
+  
+  .nav-button {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.8rem;
+    min-width: 70px;
+  }
+}
+
+/* Extra small screens (below 320px) */
+@media (max-width: 319px) {
+  .stepper-container {
+    padding: 0.1rem;
+  }
+  
+  .stepper {
+    padding: 0.4rem;
+    gap: 0.4rem;
+  }
+  
+  .step-number {
+    --step-size: 25px;
+    font-size: 12px;
+  }
+  
+  .step-line {
+    width: 0.8rem;
+  }
+  
+  .step-label {
+    font-size: 0.6rem;
+  }
+  
+  .step-content-container {
+    min-height: 80px;
+    padding: 0.3rem;
+    font-size: 0.8rem;
+  }
+  
+  .nav-button {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.75rem;
+    min-width: 60px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+  .stepper-container {
+    padding: 0.5rem;
+  }
+  
+  .stepper {
+    min-height: 300px;
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .step-content-container {
+    min-height: 100px;
+  }
+  
+  .step-label {
+    margin-top: 0.2rem;
+  }
+}

@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 interface DragAndDropProps {
   initialState: {
     Todo: string[];
-    "In Progress": string[];
+    InProgress: string[];
     Completed: string[];
   };
 }

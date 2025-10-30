@@ -1,0 +1,38 @@
+.main {
+  background-color: rgba(97, 97, 94, 0.698);
+}
+
+.img-container {
+  width: 100vw;
+  position: relative;
+}
+
+.btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.961);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+.btn-left {
+  left: 10px;
+}
+
+.btn-right {
+  right: 10px;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.carousel-image {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s ease-in-out, 
+    opacity 0.5s ease-in-out; 
+ 
+}

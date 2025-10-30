@@ -3,33 +3,40 @@ import "./typeAhead.css";
 type Product = {
   id: number;
   title: string;
-  // add other properties if needed
 };
 
 function TypeAhead() {
   const [value, setValue] = useState<string>("");
+  const [isInput, setInput] = useState(false);
   const [result, setResult] = useState<Product[]>([]);
-  const [isloading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  function handleValue(e: React.ChangeEvent<HTMLInputElement>) {
+    setInput(true);
+    setValue(e.target.value);
+  }
 
   useEffect(() => {
-    async function fetchData() {
+    if (isInput) {
+      const fetchData = async () => {
         setIsLoading(true);
-      const data = await fetch(
-        `https://dummyjson.com/products/search?q=${value}&limit=10`
-      );
-      const res = await data.json();
-      setResult(res.products);
-      setIsLoading(false);
+        const data = await fetch(
+          `https://dummyjson.com/products/search?q=${value}&limit=10`
+        );
+        const res = await data.json();
+        setResult(res.products);
+        setIsLoading(false);
+        setInput(false);
+      };
+
+      const timerId = setTimeout(fetchData, 1000);
+      return () => clearTimeout(timerId);
     }
-    fetchData();
+  }, [isInput, value]);
 
-    const timetId= setTimeout(fetchData, 1000);
-    return () => {
-      clearTimeout(timetId);
-      
-    };
-
-
+  // Optionally clear results if input is empty
+  useEffect(() => {
+    if (value === "") setResult([]);
   }, [value]);
 
   return (
@@ -38,15 +45,24 @@ function TypeAhead() {
         <input
           type="text"
           className="input-bar"
-          onChange={(e) => setValue(e.target.value)}
+          onChange={handleValue}
+          value={value}
+          aria-label="Search products"
         />
         <div>
-          {isloading ? <div>Loading... </div> : result.map((value) => (
-            <li key={value.id}>{value.title}</li>
-          ))}
+          {isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <ul>
+              {result.map((item) => (
+                <li key={item.id}>{item.title}</li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </div>
   );
 }
+
 export default TypeAhead;

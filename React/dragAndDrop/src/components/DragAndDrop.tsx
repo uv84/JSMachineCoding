@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-interface DragAndDropProps {
+type DragAndDropProps = {
   initialState: {
     Todo: string[];
     InProgress: string[];

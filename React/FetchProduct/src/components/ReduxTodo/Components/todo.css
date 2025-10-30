@@ -1,0 +1,15 @@
+.img-trasition{
+    animation: App-logo-float infinite 2s ease-in-out;
+}
+
+@keyframes App-logo-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translatex(60px)
+  }
+  100% {
+    transform: translateY(0px)
+  }
+}

@@ -1,0 +1,10 @@
+
+
+.box-container{
+    display: grid;
+}
+.box{
+    height: 50px;
+    width: 50px;
+    background-color: rgb(229, 229, 134);
+}

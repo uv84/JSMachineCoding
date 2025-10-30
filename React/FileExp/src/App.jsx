@@ -1,5 +1,6 @@
 import './App.css'
 import FileExp from './components/FileExp'
+import FileUpload from './components/FileUpload/FileUpload'
 import MsgContexWrapper from './components/NestedMsg/Context/MsgContex'
 import NestedMsg from './components/NestedMsg/NestedMsg'
 import FileExplorerContextWrapper from  "./components/context/FileExplorerContext"
@@ -11,9 +12,11 @@ function App() {
       {/* <FileExplorerContextWrapper>
       <FileExp />
     </FileExplorerContextWrapper> */}
-    <MsgContexWrapper>
+    {/* <MsgContexWrapper>
       <NestedMsg />
-    </MsgContexWrapper>
+    </MsgContexWrapper> */}
+
+    <FileUpload />
     
     </>
   )

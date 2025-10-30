@@ -1,0 +1,97 @@
+.nav-main{
+    width: 100vw;
+    height: 8vh;
+    background-color: aliceblue;
+
+}
+
+.nav-con{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navCon{
+    display: flex;
+  
+}
+
+.input-st{
+    height: 40px;
+    width: 35vw;
+}
+
+.nav-links{
+    display: flex;
+    list-style: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    position: relative;
+}
+
+.login-hover {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    min-width: 200px;
+}
+
+.login-card {
+    padding: 16px;
+}
+
+.login-card span {
+    font-size: 14px;
+    color: #666;
+}
+
+.login-card a {
+    color: #2874f0;
+    text-decoration: none;
+}
+
+.login-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0 0;
+}
+
+.login-card li {
+    padding: 8px 0;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.login-card li:hover {
+    background-color: #f5f5f5;
+}
+
+.tooltip {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1001;
+    margin-top: 8px;
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 10px solid transparent;
+    border-bottom-color: #333;
+}

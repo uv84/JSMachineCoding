@@ -95,10 +95,10 @@
 /* Connecting Lines */
 .step-line {
   height: 3px;
-  width: 6.5rem;
+  width: 100%;
   background-color: #e9ecef;
   margin: 0 0.5rem;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.9s ease;
   position: relative;
   z-index: 1;
   flex-shrink: 0;

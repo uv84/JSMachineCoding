@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addTodo, deleteTodo, editTodo, toggleEdit } from './todoSlice';
+import './todo.css'
 
 export default function Todos() {
     const todos = useSelector((state)=> state.todos.todo)
@@ -75,10 +76,12 @@ export default function Todos() {
                             </span>
                         </div>
                     )}
+                    
                 </div>
             ))}
 
         </div>
+        <img className='img-trasition' src="https://cdn.dummyjson.com/product-images/beauty/essence-mascara-lash-princess/thumbnail.webp" alt="dfd" />
       
     </div>
   )

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DummyJSON API Test</title>
+</head>
+<body>
+    <h1>DummyJSON API Test</h1>
+    <div id="results"></div>
+    
+    <script>
+        async function testAPI() {
+            const resultsDiv = document.getElementById('results');
+            
+            try {
+                // Test categories endpoint
+                console.log('Fetching categories...');
+                const categoriesResponse = await fetch('https://dummyjson.com/products/categories');
+                const categories = await categoriesResponse.json();
+                
+                console.log('Categories response:', categories);
+                resultsDiv.innerHTML += `<h3>Categories:</h3><pre>${JSON.stringify(categories, null, 2)}</pre>`;
+                
+                // Test products endpoint
+                console.log('Fetching products...');
+                const productsResponse = await fetch('https://dummyjson.com/products?limit=5');
+                const products = await productsResponse.json();
+                
+                console.log('Products response:', products);
+                resultsDiv.innerHTML += `<h3>Products (first 5):</h3><pre>${JSON.stringify(products, null, 2)}</pre>`;
+                
+            } catch (error) {
+                console.error('Error:', error);
+                resultsDiv.innerHTML += `<h3>Error:</h3><pre>${error.message}</pre>`;
+            }
+        }
+        
+        // Run test when page loads
+        testAPI();
+    </script>
+</body>
+</html>

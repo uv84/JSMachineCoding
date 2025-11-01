@@ -1,0 +1,204 @@
+.redux-demo {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.demo-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.demo-header h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.demo-header p {
+  color: #666;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.tab-switcher {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 30px;
+}
+
+.tab-btn {
+  padding: 12px 24px;
+  border: 2px solid #007bff;
+  background: white;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.tab-btn:first-child {
+  border-radius: 6px 0 0 6px;
+}
+
+.tab-btn:last-child {
+  border-radius: 0 6px 6px 0;
+  border-left: none;
+}
+
+.tab-btn.active {
+  background: #007bff;
+  color: white;
+}
+
+.tab-btn:hover:not(.active) {
+  background: #e7f3ff;
+}
+
+.demo-content {
+  margin-bottom: 40px;
+}
+
+.tab-content {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.explanation {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.explanation h3 {
+  margin: 0 0 15px 0;
+  color: #333;
+}
+
+.explanation ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.explanation li {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.react-query-demo {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid #e9ecef;
+}
+
+.react-query-demo h3 {
+  margin: 0 0 20px 0;
+  color: #333;
+  text-align: center;
+}
+
+.code-examples {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 30px;
+  border: 1px solid #e9ecef;
+}
+
+.code-examples h3 {
+  margin: 0 0 20px 0;
+  color: #333;
+  text-align: center;
+}
+
+.code-section h4 {
+  margin: 0 0 15px 0;
+  color: #495057;
+}
+
+.code-block {
+  background: #2d3748;
+  color: #e2e8f0;
+  padding: 20px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.code-block::-webkit-scrollbar {
+  height: 8px;
+}
+
+.code-block::-webkit-scrollbar-track {
+  background: #1a202c;
+}
+
+.code-block::-webkit-scrollbar-thumb {
+  background: #4a5568;
+  border-radius: 4px;
+}
+
+.code-block::-webkit-scrollbar-thumb:hover {
+  background: #718096;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .redux-demo {
+    padding: 15px;
+  }
+  
+  .tab-switcher {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .tab-btn {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 6px !important;
+    border: 2px solid #007bff !important;
+    margin-bottom: 10px;
+  }
+  
+  .tab-btn:last-child {
+    margin-bottom: 0;
+  }
+  
+  .explanation,
+  .code-examples {
+    padding: 15px;
+  }
+  
+  .code-block {
+    font-size: 12px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .demo-header h1 {
+    font-size: 24px;
+  }
+  
+  .demo-header p {
+    font-size: 16px;
+  }
+  
+  .tab-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}

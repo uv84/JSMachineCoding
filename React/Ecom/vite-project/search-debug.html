@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Debug Test</title>
+</head>
+<body>
+    <h1>DummyJSON API Search Test</h1>
+    
+    <div>
+        <input type="text" id="searchInput" placeholder="Enter search term..." />
+        <button onclick="testSearch()">Test Search</button>
+        <button onclick="testFetchProducts()">Test Fetch Products</button>
+    </div>
+    
+    <div id="results" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc;">
+        Results will appear here...
+    </div>
+
+    <script>
+        const API_BASE_URL = 'https://dummyjson.com';
+        
+        async function testSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            const resultsDiv = document.getElementById('results');
+            
+            if (!query) {
+                resultsDiv.innerHTML = 'Please enter a search term';
+                return;
+            }
+            
+            try {
+                resultsDiv.innerHTML = 'Searching...';
+                console.log('Searching for:', query);
+                
+                const response = await fetch(`${API_BASE_URL}/products/search?q=${query}`);
+                const data = await response.json();
+                
+                console.log('Search result:', data);
+                resultsDiv.innerHTML = `
+                    <h3>Search Results for "${query}":</h3>
+                    <p>Total: ${data.total || 0} products found</p>
+                    <p>Products returned: ${data.products?.length || 0}</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                console.error('Search error:', error);
+                resultsDiv.innerHTML = `Error: ${error.message}`;
+            }
+        }
+        
+        async function testFetchProducts() {
+            const resultsDiv = document.getElementById('results');
+            
+            try {
+                resultsDiv.innerHTML = 'Fetching products...';
+                console.log('Fetching products...');
+                
+                const response = await fetch(`${API_BASE_URL}/products?limit=5&skip=0`);
+                const data = await response.json();
+                
+                console.log('Fetch result:', data);
+                resultsDiv.innerHTML = `
+                    <h3>Fetch Products Results:</h3>
+                    <p>Total: ${data.total || 0} products available</p>
+                    <p>Products returned: ${data.products?.length || 0}</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                console.error('Fetch error:', error);
+                resultsDiv.innerHTML = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

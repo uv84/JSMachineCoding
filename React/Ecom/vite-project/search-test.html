@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .result { background: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 3px; }
+        button { padding: 10px 15px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        input { padding: 8px; margin: 5px; width: 200px; }
+    </style>
+</head>
+<body>
+    <h1>DummyJSON Search API Test</h1>
+    
+    <div class="test-section">
+        <h3>Test Search Functionality</h3>
+        <input type="text" id="searchInput" placeholder="Enter search term (e.g., phone)" value="phone">
+        <button onclick="testSearch()">Test Search</button>
+        <button onclick="testAllProducts()">Test All Products</button>
+        <div id="searchResults" class="result"></div>
+    </div>
+    
+    <script>
+        async function testSearch() {
+            const query = document.getElementById('searchInput').value;
+            const resultsDiv = document.getElementById('searchResults');
+            
+            try {
+                resultsDiv.innerHTML = '<p>Searching...</p>';
+                
+                const response = await fetch(`https://dummyjson.com/products/search?q=${query}`);
+                const data = await response.json();
+                
+                console.log('Search response:', data);
+                
+                resultsDiv.innerHTML = `
+                    <h4>Search Results for "${query}":</h4>
+                    <p>Total: ${data.total} products</p>
+                    <p>Returned: ${data.products.length} products</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+                
+            } catch (error) {
+                console.error('Search error:', error);
+                resultsDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+            }
+        }
+        
+        async function testAllProducts() {
+            const resultsDiv = document.getElementById('searchResults');
+            
+            try {
+                resultsDiv.innerHTML = '<p>Fetching all products...</p>';
+                
+                const response = await fetch('https://dummyjson.com/products?limit=5');
+                const data = await response.json();
+                
+                console.log('All products response:', data);
+                
+                resultsDiv.innerHTML = `
+                    <h4>All Products (first 5):</h4>
+                    <p>Total: ${data.total} products</p>
+                    <p>Returned: ${data.products.length} products</p>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+                
+            } catch (error) {
+                console.error('Fetch error:', error);
+                resultsDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+            }
+        }
+        
+        // Test search on page load
+        testSearch();
+    </script>
+</body>
+</html>

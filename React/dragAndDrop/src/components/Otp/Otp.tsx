@@ -34,6 +34,7 @@ function Otp({ otpLength = 6 }: { otpLength?: number }) {
         if (index + 1 < otpFields.length) ref.current[index + 1]?.focus();
         setOtpFields(copyOtpFields);
     };
+    
     function handlepast  (e: React.ClipboardEvent<HTMLInputElement>) {
         e.preventDefault();
         const pasteData = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, otpLength);

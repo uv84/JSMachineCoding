@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import useFetch from '../../hooks/useFetch';
+import useDebounce from '../../hooks/useDebounce';
 
 interface Product {
   id: number;
@@ -16,28 +17,25 @@ function FetchData() {
   const [inputValue, setInputValue] = useState(""); // controlled input
   const [url, setUrl] = useState(baseUrl); // triggers fetch
   
+  // Use custom debounce hook with 500ms delay
+  const debouncedInputValue = useDebounce(inputValue, 500);
+  
   const { data, loading } = useFetch(url);
 
   useEffect(() => {
-    console.log("useEffect running with inputValue:", inputValue);
+    console.log("useEffect running with debouncedInputValue:", debouncedInputValue);
     
-    if (inputValue.trim() === "") {
+    if (debouncedInputValue.trim() === "") {
       console.log("Input is empty, setting base URL");
       setUrl(baseUrl);
       return;
     }
     
-    const id = setTimeout(() => {
-      const searchUrl = `${baseUrl}/search?q=${inputValue}`;
-      console.log("Setting search URL:", searchUrl);
-      setUrl(searchUrl);
-    }, 600);
+    const searchUrl = `${baseUrl}/search?q=${debouncedInputValue}`;
+    console.log("Setting search URL:", searchUrl);
+    setUrl(searchUrl);
     
-    return () => {
-      console.log("Cleanup timeout");
-      clearTimeout(id);
-    };
-  }, [inputValue])
+  }, [debouncedInputValue])
 
   // Handle both search results (with products array) and direct product list
   const products = (data as ApiResponse)?.products || (data as Product[]) || [];

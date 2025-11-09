@@ -11,6 +11,9 @@ import Main from "./pages/Main"
 import Product from './pages/Product'
 import Second from './pages/Second'
 import FetchData from './components/fetchData/fetchdata'
+import Star from './StarRating/Star'
+import Progress from './StarRating/Progress'
+import AppExample from './Context/AppExample'
 
 function App() {
  
@@ -35,7 +38,10 @@ function App() {
 
       </Routes>
       </BrowserRouter> */}
-      <FetchData />
+      {/* <FetchData /> */}
+      {/* <Star/> */}
+      {/* <Progress /> */}
+      <AppExample />
     </>
   )
 }

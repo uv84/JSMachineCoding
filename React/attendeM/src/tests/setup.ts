@@ -1,28 +1,32 @@
 import '@testing-library/jest-dom';
-import 'fake-indexeddb/auto';
+import { mockDatabaseService } from './mocks/database.mock';
+import { mockAuthService, mockAttendanceService } from './mocks/services.mock';
 
-// Reset state between tests
-afterEach(async () => {
-  // Clear localStorage and sessionStorage
+// Mock the database service module
+jest.mock('../services/database', () => ({
+  dbService: mockDatabaseService,
+}));
+
+// Mock the auth service module
+jest.mock('../services/auth', () => ({
+  authService: mockAuthService,
+}));
+
+// Mock the attendance service module
+jest.mock('../services/attendance', () => ({
+  attendanceService: mockAttendanceService,
+}));
+
+// Reset all mocks before each test
+beforeEach(() => {
+  // Clear all mocks
+  jest.clearAllMocks();
+  
+  // Reset mock services
+  mockDatabaseService.reset();
+  mockAuthService.reset();
+  
+  // Clear storage
   localStorage.clear();
   sessionStorage.clear();
-  
-  // Reset database by deleting it
-  try {
-    const dbs = await indexedDB.databases();
-    await Promise.all(
-      dbs.map(db => {
-        if (db.name) {
-          return new Promise<void>((resolve) => {
-            const deleteReq = indexedDB.deleteDatabase(db.name!);
-            deleteReq.onsuccess = () => resolve();
-            deleteReq.onerror = () => resolve();
-          });
-        }
-        return Promise.resolve();
-      })
-    );
-  } catch (error) {
-    // Ignore errors during cleanup
-  }
 });

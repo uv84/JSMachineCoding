@@ -14,6 +14,11 @@ import FetchData from './components/fetchData/fetchdata'
 import Star from './StarRating/Star'
 import Progress from './StarRating/Progress'
 import AppExample from './Context/AppExample'
+import New from './components/fetchData/new'
+import CallbackExample from './components/fetchData/callback'
+import UseMemoExample from './components/fetchData/useMemo'
+import TicTacToe from './StarRating/tict'
+import Ticuv from './StarRating/ticuv'
 
 function App() {
  
@@ -41,10 +46,15 @@ function App() {
       {/* <FetchData /> */}
       {/* <Star/> */}
       {/* <Progress /> */}
-      <AppExample />
+      {/* <AppExample /> */}
+      {/* <New /> */}
+      {/* <CallbackExample /> */}
+      {/* <UseMemoExample /> */}
+      {/* <TicTacToe /> */}
+      <Ticuv />
     </>
-  )
-}
+    )
+  }
 
 export default App
 

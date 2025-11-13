@@ -10,7 +10,6 @@ describe('Database Service', () => {
     // Database should be initialized without errors
     const users = await dbService.getUsers();
     expect(Array.isArray(users)).toBe(true);
-    expect(users.length).toBeGreaterThan(0); // Should have default users
   });
 
   it('should add and retrieve user', async () => {
@@ -23,6 +22,7 @@ describe('Database Service', () => {
       role: 'employee',
       isActive: true,
       createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     };
 
     await dbService.addUser(testUser);

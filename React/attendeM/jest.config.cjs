@@ -7,7 +7,13 @@ module.exports = {
     '<rootDir>/src/**/*.(test|spec).{js,jsx,ts,tsx}'
   ],
   transform: {
-    '^.+\\.(ts|tsx)$': 'ts-jest',
+    '^.+\\.(ts|tsx)$': ['ts-jest', {
+      tsconfig: {
+        jsx: 'react-jsx',
+        esModuleInterop: true,
+        allowSyntheticDefaultImports: true,
+      },
+    }],
     '^.+\\.(js|jsx)$': 'babel-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
@@ -23,4 +29,7 @@ module.exports = {
   ],
   testTimeout: 15000,
   maxWorkers: 1,
+  clearMocks: true,
+  resetMocks: true,
+  restoreMocks: true,
 };

@@ -3,6 +3,8 @@ import { useTheme } from "./context";
 export default function Demo2() {
   const { theme, toggleTheme, isDark } = useTheme();
 
+
+
   return (
     <div style={{
       backgroundColor: theme.background,
